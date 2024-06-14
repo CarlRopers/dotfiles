@@ -1,0 +1,9 @@
+[init]
+defaultBranch = master
+[user]
+name = Carl Ropers
+email = 121970965+CarlRopers@users.noreply.github.com
+[credential]
+helper = store
+[core]
+autocrlf = false
