@@ -43,8 +43,6 @@ fi
 ###############################################################################################################################
 
 if [ ! -f "/usr/bin/git" ]; then
-    echo "Git is not installed, cannot download dotfiles."
-
     echo "Installing Git..."
     sudo apt-get update -qq >/dev/null
     sudo apt-get install git -y -qq >/dev/null
