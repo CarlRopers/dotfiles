@@ -17,7 +17,7 @@ function handle_error() {
     local error_command=$BASH_COMMAND
 
     echo >&2 "Error occurred on line $error_line: $error_command (exit code: $error_code)"
-    exit 1
+    return 1
 }
 
 # Set the trap for any error (non-zero exit code)
@@ -27,7 +27,7 @@ trap handle_error ERR
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     echo >&2 "script is not being sourced, run this instead:"
     echo >&2 "source ${BASH_SOURCE[0]}"
-    exit 1
+    return 1
 fi
 
 ###############################################################################################################################
@@ -37,7 +37,7 @@ dotfiles_dir="${HOME}/.dotfiles"
 
 if [[ $current_user == "root" ]]; then
     echo >&2 "User cannot be root"
-    exit 1
+    return 1
 fi
 
 ###############################################################################################################################
