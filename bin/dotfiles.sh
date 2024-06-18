@@ -84,12 +84,20 @@ for file in "${dotfiles_dir}"/.*; do
 
     # echo "${basename}"
 
-    if [[ ! -L "${HOME}/${basename}" && -f "${HOME}/${basename}" ]]; then
-        # echo "file exist and is not a link: ${basename}"
-        rm "${basename}"
+    if [[ ! -L "${HOME}/${basename}" ]]; then
+
+        if [[ -f "${HOME}/${basename}" ]]; then
+            echo "file exist and is not a link: ${basename}"
+            rm "${basename}"
+
+        elif [[ -d "${HOME}/${basename}" ]]; then
+            echo "directory exist and is not a link: ${basename}"
+            rm -Rf "${basename}"
+        fi
+
     fi
 
-    ln -srf "${dotfiles_dir}/${basename}" "${HOME}/${basename}" # s = symlink; r = relative path; f = force
+    ln -nsrf "${dotfiles_dir}/${basename}" "${HOME}/${basename}" # s = symlink; r = relative path; f = force; n = no-dereference (else it will create a new dir link)
 
 done
 shopt -u dotglob # disable hidden files
