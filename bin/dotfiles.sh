@@ -17,6 +17,10 @@ function handle_error() {
     local error_command=$BASH_COMMAND
 
     echo >&2 "Error occurred on line $error_line: $error_command (exit code: $error_code)"
+
+    # unset script conditions
+    set +u
+    trap - ERR
     return 1
 }
 
