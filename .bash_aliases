@@ -4,9 +4,9 @@ alias tt='history | tail -n 100 | grep'
 alias update="sudo -- sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'"
 alias count='ls * | wc -l'
 
-alias lslinks='ls --color=auto -lhaF | \grep ^l'
-alias lsdirs='ls --color=auto -lhaF | \grep ^d'
-alias lsfiles='ls --color=auto -lhaF | \grep ^-'
+alias lslinks='ls -lhaF | \grep --color=always ^l'
+alias lsdirs='ls -lhaF | \grep --color=always ^d'
+alias lsfiles='ls -lhaF | \grep --color=always ^-'
 
 alias cls='clear'
 alias rename='mv'
