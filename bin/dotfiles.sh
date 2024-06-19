@@ -70,8 +70,11 @@ else
         /usr/bin/git -C "${dotfiles_dir}" status -uall -s
 
         echo ""
-        echo "Do you want to discard these changes on the local system?"
-        # return
+        read -r -p "Discard local changes (Y/n)? " answer
+
+        if [[ ! "${answer,,}" == "y" && -n "${answer}" ]]; then
+            return
+        fi
     fi
 fi
 # make sure items in folder match those on git
