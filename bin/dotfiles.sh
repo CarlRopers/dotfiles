@@ -60,8 +60,20 @@ fi
 if [ ! -d "${dotfiles_dir}/.git" ]; then
     echo "Cloning git dotfiles..."
     /usr/bin/git clone "https://carlropers@github.com/CarlRopers/dotfiles.git" "${dotfiles_dir}" >/dev/null 2>&1
-fi
 
+else
+    /usr/bin/git -C "${dotfiles_dir}" add "${dotfiles_dir}"
+    CHANGED=$(/usr/bin/git -C "${dotfiles_dir}" status --porcelain)
+
+    if [ -n "${CHANGED}" ]; then
+        echo 'Changed files: '
+        /usr/bin/git -C "${dotfiles_dir}" status -uall -s
+
+        echo ""
+        echo "Do you want to discard these changes on the local system?"
+        # return
+    fi
+fi
 # make sure items in folder match those on git
 echo "Syncing latest changes with git"
 /usr/bin/git -C "${dotfiles_dir}" fetch --all >/dev/null 2>&1
